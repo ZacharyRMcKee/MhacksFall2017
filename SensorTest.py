@@ -7,11 +7,16 @@ import time
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11,GPIO.IN)
 
-while True:
+maxRuns = 0
+j = True
+while j:
     i=GPIO.input(11) #Sets i to the input of the sensor (0 = low, 1 = high)
+    maxRuns = maxRuns+1  #increments the runs
     if i==0:
         print("Detected Nothing")
-        time.sleep(0.4)
+        time.sleep(1)
     elif i==1:
         print("Detected Something")
-        time.sleep(0.4)
+        time.sleep(1)
+    if maxRuns > 20
+        j = False
