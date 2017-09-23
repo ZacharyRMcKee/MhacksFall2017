@@ -12,5 +12,5 @@ client = Client(account_sid,auth_token)
 
 
 
-message = client.api.account.messages.create(to="+17088906859",from_="+13126267493",body="Hello there!",
+message = client.messages.create(to="+17088906859",from_="+13126267493",body="Hello there!",
         media_url=['https://tinyurl.com/y8sg8tca'])
