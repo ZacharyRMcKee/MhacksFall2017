@@ -7,6 +7,7 @@ auth_token = "88297a67d59a47fcb0cb3e0a95fdc991"
 
 client = Client(account_sid,auth_token)
 
-for message in client.messages.list():
-    if(message.body == "911"):
-        print("Calling the cops!")
+for message in client.api.account.messages.list():
+    #if(message.body == "911"):
+    #    print("Calling the cops!")
+    print(message.body)

@@ -12,5 +12,7 @@ client = Client(account_sid,auth_token)
 
 
 
-message = client.messages.create(to="+17088906859",from_="+13126267493",body="Hello there!",
-        media_url=['https://tinyurl.com/y8sg8tca'])
+message = client.api.account.messages.create(to="+17088906859",
+                                 from_="+13126267493",
+                                 media_url=['https://demo.twilio.com/owl.png','https://demo.twilio.com/logo.png'])
+

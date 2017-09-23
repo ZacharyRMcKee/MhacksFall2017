@@ -18,5 +18,5 @@ while j:
     elif i==1:
         print("Detected Something")
         time.sleep(1)
-    if maxRuns > 20
+    if maxRuns > 20:
         j = False
