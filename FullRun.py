@@ -4,6 +4,8 @@ import RPi.GPIO as GPIO
 from twilio.rest import Client
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
+from multiprocessing import Process
+
 
 #Account SID from twilio.com/console for Brett
 account_sid = "AC03ce2462c1bd0758ac44b1426c8b2246"
@@ -16,6 +18,11 @@ GPIO.setup(11,GPIO.IN)        #Enables the input from the sensor
 
 #enable the reply webapp to check for messages
 app = Flask(__name__)
+
+
+def soundAlarm():
+    # This is a good candidate for a second process. Low-priority
+    os.system("aplay alarm.wav")
 
 def activate_alarm():
     message = client.messages.create(
@@ -35,6 +42,8 @@ def activate_alarm():
                     from_="+13126267493",
                     body="An Intruder has been detected from your sensor! Type FALSE POSITIVE to reset the alarm, or 911 to alert local authorities.")
             print(message.sid)
+            p = Process(target=soundAlarm)
+            p.start()
             print("Something Detected, Warning message sent!")
             alarmArmed=False
 
@@ -81,4 +90,4 @@ def warnUser():
                         " your PiAlarm will be reset.")
 def soundAlarm():
     # This is a good candidate for a second process. Low-priority
-    system("aplay alarm.wav")
+    os.system("aplay alarm.wav")
