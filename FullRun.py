@@ -8,8 +8,8 @@ from multiprocessing import Process
 
 
 #Account SID from twilio.com/console for Brett
-account_sid = "AC03ce2462c1bd0758ac44b1426c8b2246"
-auth_token = "88297a67d59a47fcb0cb3e0a95fdc991"
+account_sid = "REDACTED"
+auth_token = "REDACTED"
 client = Client(account_sid, auth_token)
 alarmArmed = False
 #GPIO.setwarnings(False)      #Diables warnings on the sensor. Uncomment if warnings are a problem.
@@ -25,25 +25,25 @@ def soundAlarm():
 
 def call911(): #Sends a message to authorities with the user's address
     call = client.api.account.calls\
-            .create(to="17088906859",
+            .create(to="REDACTED",
                     from_="+13126267493",
                     url="https://tinyurl.com/yb2jnmek")
 
 def callUser(): #Call the user warning them of an intruder
     call = client.api.account.calls\
-            .create(to="17088906859",
+            .create(to="REDACTED",
                     from_="+13126267493",
                     url="https://tinyurl.com/MBroke")
 
 def sendImage(): #Send a (placeholder) image of the intruder
     message = client.messages.create(
-            to="+17088906859",
+            to="+REDACTED",
             from_="+13126267493",
             body="https://i.imgur.com/xVwml6Kr.jpg")
 
 def activate_alarm(): #Runs through a loop checking for an intruder until interrupted
     message = client.messages.create(
-            to="+17088906859",
+            to="+REDACTED",
             from_="+13126267493",
             body="Your PiAlarm has been activated")
     print(message.sid)
