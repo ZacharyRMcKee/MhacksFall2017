@@ -22,25 +22,26 @@ app = Flask(__name__)
 
 def soundAlarm():
     os.system("aplay alarm.wav")
-def call911():
+
+def call911(): #Sends a message to authorities with the user's address
     call = client.api.account.calls\
             .create(to="17088906859",
                     from_="+13126267493",
                     url="https://tinyurl.com/yb2jnmek")
 
-def callUser():
+def callUser(): #Call the user warning them of an intruder
     call = client.api.account.calls\
             .create(to="17088906859",
                     from_="+13126267493",
                     url="https://tinyurl.com/MBroke")
 
-def sendImage():
+def sendImage(): #Send a (placeholder) image of the intruder
     message = client.messages.create(
             to="+17088906859",
             from_="+13126267493",
             body="https://i.imgur.com/xVwml6Kr.jpg")
 
-def activate_alarm():
+def activate_alarm(): #Runs through a loop checking for an intruder until interrupted
     message = client.messages.create(
             to="+17088906859",
             from_="+13126267493",
@@ -56,7 +57,7 @@ def activate_alarm():
             print(message.sid)
             p = Process(target=soundAlarm)
             p.start()
-            #callUser()
+            callUser()
             sendImage()
             print("Something Detected, Warning message sent!")
             alarmArmed=False
